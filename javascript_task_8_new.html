@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        div {
+            padding: 20px;
+            background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .text {
+            display: none;
+            /* Initially hide the error messages */
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="justify-content-center" style="text-align: center;">
+        <h2 style="text-align: center;">Registration form</h2>
+        <form class="form-group justify-content-center" style="text-align: center;" onsubmit="return validateForm()">
+            <table>
+                <tr>
+                    <td><label for="inp1">First Name</label></td>
+                    <td><input id="inp1" placeholder="Enter your first name" type="text"></td>
+                    <td>
+                        <p class="text" id="error1">Please enter your first name.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="inp2">Last Name</label></td>
+                    <td><input id="inp2" placeholder="Enter your last name" type="text"></td>
+                    <td>
+                        <p class="text" id="error2">Please enter your last name.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="inp3">Email</label></td>
+                    <td><input id="inp3" placeholder="Enter your Email" type="text"></td>
+                    <td>
+                        <p class="text" id="error3">Please enter your email.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="inp4">Password</label></td>
+                    <td><input id="inp4" placeholder="Enter password" type="password"></td>
+                    <td>
+                        <p class="text" id="error4">Please enter a password.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="inp5">Re-enter Password</label></td>
+                    <td><input id="inp5" placeholder="Re-enter password" type="password"></td>
+                    <td>
+                        <p class="text" id="error5">Please re-enter your password.</p>
+                    </td>
+                </tr>
+                <!-- Add more form fields here with similar structure -->
+                <tr>
+                    <td>
+                        <label>Gender</label>
+                    </td>
+                    <td>
+                        <input type="radio" name="gender" value="male" checked> Male<br>
+                        <input type="radio" name="gender" value="female"> Female<br>
+                    </td>
+                    <td>
+                        <p class="text"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Age</label>
+                    </td>
+                    <td>
+                        <input type="number" placeholder="Enter your age">
+                    </td>
+                    <td>
+                        <p class="text"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Phone Number</label>
+                    </td>
+                    <td>
+                        <input type="number" placeholder="Enter your phone number">
+                    </td>
+                    <td>
+                        <p class="text"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Address</label>
+                    </td>
+                    <td>
+                        <textarea rows="3" cols="25"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>State</label>
+                    </td>
+                    <td>
+                        <input type="text" placeholder="Enter your state">
+                    </td>
+                    <td>
+                        <p class="text"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Country</label>
+                    </td>
+                    <td>
+                        <select>
+                            <option>Choose your country</option>
+                            <option>India</option>
+                            <option>USA</option>
+                            <option>RUSSIA</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Languages Known </label>
+                    </td>
+                    <td>
+                        <input type="radio" name="language" value="English">English
+                        <input type="radio" name="language" value="Kannada">Kannada
+                        <input type="radio" name="language" value="Hindi">Hindi
+                        <input type="radio" name="language" value="Telugu">Telugu
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox">Hereby I declare all the given details are true
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Login to <a href="https://ethnus.com/">ethnus </a>website.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="center-button" colspan="3">
+                        <span><button type="submit"
+                                class="btn btn-danger justify-content-center">Register</button></span>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            var fieldsToValidate = [
+                { id: "inp1", errorId: "error1", message: "Please enter your first name." },
+                { id: "inp2", errorId: "error2", message: "Please enter your last name." },
+                { id: "inp3", errorId: "error3", message: "Please enter your email." },
+                { id: "inp4", errorId: "error4", message: "Please enter a password." },
+                { id: "inp5", errorId: "error5", message: "Please re-enter your password." },
+                // Add more fields as needed
+            ];
+
+            var isValid = true;
+
+            fieldsToValidate.forEach(function (field) {
+                var input = document.getElementById(field.id);
+                var error = document.getElementById(field.errorId);
+
+                if (!input.value.trim()) {
+                    error.style.display = "block";
+                    isValid = false;
+                } else {
+                    error.style.display = "none";
+                }
+            });
+
+            if (!isValid) {
+                // Prevent form submission if there are empty fields
+                return false;
+            }
+
+            // Continue with form submission if all fields are filled
+            return true;
+        }
+    </script>
+</body>
+
+</html>
